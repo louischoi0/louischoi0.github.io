@@ -1,7 +1,7 @@
 # Site wide configuration
 
 title: "Louis Choi :)"
-description: "This is a description of my awesome site."
+description: "Machine Learning And Programming."
 logo: # 120x120 px default image used for Twitter summary card
 teaser: # 400x250 px default teaser image used in image archive grid
 locale: ko
@@ -10,6 +10,8 @@ feed:
   path: atom.xml
 
 # Jekyll configuration
+site:
+  categories: ["ml"]
 
 sass:
   sass_dir: _sass
@@ -25,11 +27,11 @@ plugins:
 
 
 # Site owner
-owner: louis choi
-  name: louis
+owner: 
+  name: Louis choi
   email:
   twitter:
-  google: yerang040231@gmail.com
+  google: 
     ad-client:
     ad-slot:
   bio:

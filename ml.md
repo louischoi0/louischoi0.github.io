@@ -1,13 +1,13 @@
 ---
 layout: archive
-permalink: /
-title: "Posts"
+permalink: /ml
+title: "Machine Learning."
 image:
-  feature: "main.jpg"
+  feature: "car.jpg"
 ---
 
 <div class="tiles">
-{% for post in site.posts %}
+{% for post in site.categories.ml %}
 	{% include post-grid.html %}
 {% endfor %}
 </div><!-- /.tiles -->
