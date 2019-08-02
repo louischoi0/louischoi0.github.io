@@ -18,18 +18,18 @@ permalink: /:categories/:title/
 kramdown:
   toc_levels: 1..2
 highlighter: rouge
-gems:
+plugins:
   - jekyll-sitemap
   - jekyll-gist
   - jekyll-feed
 
 
 # Site owner
-owner:
-  name:
+owner: louis choi
+  name: louis
   email:
   twitter:
-  google:
+  google: yerang040231@gmail.com
     ad-client:
     ad-slot:
   bio:
