@@ -1,5 +1,3 @@
- 
-
 ---
 
 layout: article
@@ -13,7 +11,6 @@ image:
   feature:car.jpg
 
 category: "ml"
-
 ---
 
 
