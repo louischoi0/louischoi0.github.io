@@ -7,12 +7,6 @@ image:
 category: "ml"
 ---
 
-
-
-# 내 마음을 훔치는 스포티파이 음악 추천 시스템 - 1
-
-
-
 ### Recommendation System With LMF(Logistic Matrix Factorization)
 
 
