@@ -1,22 +1,11 @@
- 
-
 ---
-
 layout: article
-
 title: "내 마음을 훔치는 스포티파이 음악 추천 시스템 - 1"
-
 image:
-
   teaser:car.jpg
-
   feature:car.jpg
-
 category: "ml"
-
 ---
-
-
 
 
 
