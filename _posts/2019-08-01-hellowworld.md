@@ -6,4 +6,3 @@ image:
   teaser: "head.jpg"
 ---
 
-Hiroo~~
