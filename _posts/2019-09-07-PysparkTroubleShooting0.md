@@ -70,7 +70,7 @@ GroupBy is very Expensive, highly recommend to avoid.
 
 
 ```python
-def rgroupcount(self,_df,target_field) :
+def rgroupcount(_df,target_field) :
 
   to_counting_tuple = lambda x : ( x, 1 )
 
@@ -86,11 +86,14 @@ def rgroupcount(self,_df,target_field) :
 
 그러니까 아래와 같은 데이터프레임을 넣고, target_field를 첫번째 컬럼 이름으로 넣으면,
 
-![a](https://github.com/louischoi0/louischoi0.github.io/blob/master/images/02.PNG)
+![a](../images/02.PNG)
+```python
+rgroupcount(df,"suid")
+```
 
 Output은 target_field와 이에 대한 카운트 컬럼 2개를 가지는 데이터 프레임을 반환 합니다.
 
-![b](https://github.com/louischoi0/louischoi0.github.io/blob/master/images/03.PNG)
+![b](../images/03.PNG)
 
 또한 저는 to_counting_tuple 을 따로 파라미터로 받아, key에 대해서 Score로 변경한후 집계 연산을 수행해, 단순 카운트 뿐만 아니라 가중치를 반영한 Score값도 조절할 수 있었습니다. 
 
@@ -111,7 +114,7 @@ Output은 target_field와 이에 대한 카운트 컬럼 2개를 가지는 데�
 
 ```python
 
-def rgroupcountmultikey(self,_df,*fields,op=add) :
+def rgroupcountmultikey(_df,*fields,op=add) :
     self.info("RgroupCountmultikey {}".format(fields))
     cols = reduce(lambda x , y : x + [ col(y) , F.lit("-") ], fields, [])
     cols = cols[:-1]
@@ -127,7 +130,7 @@ def rgroupcountmultikey(self,_df,*fields,op=add) :
 예시로 userid 와 좋아요를 누른 tagid 를 그룹화 해서 집계를 하고 싶다면, 
 userid와 tagid를 가진 데이터 프레임을 인풋 데이터로 넣고,
 
-![c](https://github.com/louischoi0/louischoi0.github.io/blob/master/images/05.PNG)
+![c](../images/05.PNG)
 
 집계를 해봅시다 ! 아래와 같이 호출!
 ```python
@@ -136,13 +139,39 @@ rgroupcountmultikey(_df,"userid","tags")
 
 그러면 아래와 같이 나와 주십니다.
 
-![d](https://github.com/louischoi0/louischoi0.github.io/blob/master/images/04.PNG)
+![d](../images/04.PNG)
 
+key값이 유저아이디와 태그 아이디로 묶여 그에 해당하는 카운트 값을 가지는 것을 확인 할수 있습니다.
+그러면 이제 다시 유저 아이디와 태그 아이디를 따로 분리 시키고 싶을 수가 있겠죠? 
+네 그래서 제가 또 준비했습니다 ..ㅎㅎ
 
+```python
+def splitmultikey(_df,target_field,*fields) :
+    fcnt = len(fields) 
 
+    def getkey(i) :
+        try :
+            return lambda x : x.split("-")[i]
+        except Exception as e:
+            print("삑! {}".format(e))
+            return ""
 
+    objs = list( F.udf(getkey(i),T.StringType() ) for i in range(fcnt) )
 
+    def obj(__df,i) :
+        return __df.withColumn( fields[i], objs[i](target_field) )
 
+    return reduce(lambda bdf,i : obj(bdf,i) , range(fcnt),_df)
+```
+
+위의 데이터 프레임 key를 대시 기준으로 컬럼 하나씩 따로 분리하기 위해 아래와 같이 호출!
+
+```python
+splitmultikey(df,"key","_suid","tagid")
+#타겟이 되는 컬럼 이름을 첫번째로 넣어주고, 이에 해당하는 키 이름값들을 차례로 넣어준다,
+#대시가 한개 있다면 뒤에 key이름을 2개
+#두개 있다면 3개 주면 된다.
+```
 
 
 
