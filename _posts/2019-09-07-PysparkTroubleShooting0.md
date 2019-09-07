@@ -131,7 +131,7 @@ def rgroupcountmultikey(_df,*fields,op=add) :
 예시로 userid 와 좋아요를 누른 tagid 를 그룹화 해서 집계를 하고 싶다면, 
 userid와 tagid를 가진 데이터 프레임을 인풋 데이터로 넣고,
 
-![c](../images/05.PNG)
+![c](../images/005.PNG)
 
 집계를 해봅시다 ! 아래와 같이 호출!
 ```python
