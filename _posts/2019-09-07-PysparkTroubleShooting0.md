@@ -43,6 +43,8 @@ Yarn클러스터가 정말 똑똑해서 모든걸 다 알아서 조절해 줄거
 
 그리 길지 않은 개발 경력이지만 그래도 일정 못맞춰본 적은 없다는 자부심에 일하고 있었던 터라 어떻게든 해결 해야 한다는 생각 밖에 없었고 구글 검색을 시작하였습니다.
 
+## Godgle .....
+
 먼저 Spark Document를 살펴 보았는데 아주 단비 같은 글귀가 등장합니다.
 
 GroupBy is very Expensive, highly recommend to avoid.
@@ -84,11 +86,11 @@ def rgroupcount(self,_df,target_field) :
 
 그러니까 아래와 같은 데이터프레임을 넣고, target_field를 첫번째 컬럼 이름으로 넣으면,
 
-![](https://github.com/louischoi0/louischoi0.github.io/blob/master/images/02.PNG)
+![a](https://github.com/louischoi0/louischoi0.github.io/blob/master/images/02.PNG)
 
 Output은 target_field와 이에 대한 카운트 컬럼 2개를 가지는 데이터 프레임을 반환 합니다.
 
-![](https://github.com/louischoi0/louischoi0.github.io/blob/master/images/03.PNG)
+![b](https://github.com/louischoi0/louischoi0.github.io/blob/master/images/03.PNG)
 
 또한 저는 to_counting_tuple 을 따로 파라미터로 받아, key에 대해서 Score로 변경한후 집계 연산을 수행해, 단순 카운트 뿐만 아니라 가중치를 반영한 Score값도 조절할 수 있었습니다. 
 
@@ -125,7 +127,7 @@ def rgroupcountmultikey(self,_df,*fields,op=add) :
 예시로 userid 와 좋아요를 누른 tagid 를 그룹화 해서 집계를 하고 싶다면, 
 userid와 tagid를 가진 데이터 프레임을 인풋 데이터로 넣고,
 
-![](https://github.com/louischoi0/louischoi0.github.io/blob/master/images/05.PNG)
+![c](https://github.com/louischoi0/louischoi0.github.io/blob/master/images/05.PNG)
 
 집계를 해봅시다 ! 아래와 같이 호출!
 ```python
@@ -134,7 +136,7 @@ rgroupcountmultikey(_df,"userid","tags")
 
 그러면 아래와 같이 나와 주십니다.
 
-![](https://github.com/louischoi0/louischoi0.github.io/blob/master/images/04.PNG)
+![d](https://github.com/louischoi0/louischoi0.github.io/blob/master/images/04.PNG)
 
 
 
