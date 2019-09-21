@@ -1,9 +1,6 @@
 ---
 layout: article 
 title: "Naver Blog Crawling"
-image:
-  feature: "head.jpg"
-  teaser: "head.jpg"
 ---
 
 Naver Blog Crawling 수업자료 입니다. 
