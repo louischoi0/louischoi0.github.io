@@ -12,6 +12,7 @@ feed:
 # Jekyll configuration
 site:
   categories: ["ml"]
+  url : "https://louischoi0.github.io"
 
 sass:
   sass_dir: _sass
